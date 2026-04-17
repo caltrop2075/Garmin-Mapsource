@@ -7,7 +7,7 @@ on my Linux system mps-gpx is only 25.3k
 there's nearly 500 lines of 'C'<br>
 a chunk of it is data
 
-execute: mps-gpx filename<br>
+execute: mps-gpx filename | tee destination<br>
 it produces a GPX file
 
 <TABLE>

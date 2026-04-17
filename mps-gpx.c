@@ -1,14 +1,19 @@
 /*==============================================================================
  * MPS -> GPX
- * 2026-04-16
+ * 2026-04-17
  * read byte by byte & decode
  * buffer is 64 bytes
- *    always \0 terminated
+ *    always \0 terminated but prints 'buf' bytes
  * int types gave some issue on this system
  *    found out that int is actually long
+ * Garmin Mapsource encryption; lat/lon = int * 360.0 / 2^32
+ *    nexer would have figured this without the documentation I found
+ *    why THEY didn't just use 'double'...?; just to FUCK WITH US!
+ * records are variable length due to \0 terminated strings
+ * debugging: set 'tst=true;' in 'main()'
  *
  * TODO
- * waypoint    oops... filter auto-route waypoints
+ * waypoint
  *    gpx      done
  * routes
  *    gpx
@@ -311,6 +316,7 @@ bool          tst;                           // test run flag
 bool          flg;                           // general use flag
 FILE          *fp;                           // file pointer
 int           cnt;                           // general purpose counter
+int           buf;                           // buffer read count
 char          *str=(char*)&buff;             // buffer string pointer
 char          chr;                           // general purpose char
 char          sec;                           // section character
@@ -330,6 +336,7 @@ void cl_gpx(void)                            // clear gpx data
    data.prx=0;                               //       proximity
    data.dep=0;                               //       depth
 }
+/*----------------------------------------------------------------------------*/
 void pr_gpx(void)                            // print gpx data
 {
    printf("%3s%s%f%s%f%s\n","","<wpt lat=\"",data.lat,"\" lon=\"",data.lon,"\">");
@@ -341,18 +348,14 @@ void pr_gpx(void)                            // print gpx data
       printf("%6s%s%s%s\n","","<desc>",data.cmt,"</desc>");
    printf("%3s%s\n","","</wpt>");
 }
+/*----------------------------------------------------------------------------*/
 void pr_stuff(void)                          // print stuff
 {
    if(tst)
    {
       printf("%03li: ",ftell(fp));           // print pos
-      cnt=-1;
-      do                                     // print buf
-      {
-         cnt++;
+      for(cnt=0;cnt<=buf;cnt++)              // print buffer & \0
          printf("%02X ",buff.chr[cnt]);
-      }
-      while(buff.chr[cnt]!=0x00);
       printf("\n");
    }
 }
@@ -386,6 +389,7 @@ void read_n(int n)                           // read into buffer & \0
 {
    fread(&buff,1,n,fp);
    buff.chr[n]=0x00;
+   buf=n;
    pr_stuff();
 }
 /*----------------------------------------------------------------------------*/
@@ -398,6 +402,7 @@ void read_s(void)                            // read into buffer & \0
       buff.chr[cnt]=(char)fgetc(fp);
    }
    while (buff.chr[cnt]!=0);
+   buf=cnt;
    pr_stuff();
 }
 /*----------------------------------------------------------------------------*/
@@ -461,10 +466,12 @@ void read_w(void)                            // read waypoint section
 /*----------------------------------------------------------------------------*/
 void read_r(void)                            // read route section
 {
+      sec=0x00;
 }
 /*----------------------------------------------------------------------------*/
 void read_t(void)                            // read track section
 {
+      sec=0x00;
 }
 /*============================================================================*/
 // MAIN
@@ -488,8 +495,8 @@ int main(int argc, char *argv[])
    if(!tst) printf("%s\n","<gpx>");
 
    do read_w(); while (sec==0x57);           // read waypoints
-   // do read_r(); while (sec==0x52);           // read routes
-   // do read_t(); while (sec==0x54);           // read tracks
+   do read_r(); while (sec==0x52);           // read routes
+   do read_t(); while (sec==0x54);           // read tracks
 
    if(!tst) printf("%s\n","</gpx>");
    if(tst) printf("%s\n","===============");

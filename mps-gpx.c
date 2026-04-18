@@ -489,6 +489,11 @@ int main(int argc, char *argv[])
    if(tst) printf("%d   %s   %s\n",argc,argv[0],argv[1]);
 
    fp=fopen(argv[1],"r");                    // open file for reading
+   if(fp==NULL)
+   {
+      printf("%s\n","file not found");
+      exit(1);
+   }
    if(tst) printf("%s\n","===============");
 
    read_h();

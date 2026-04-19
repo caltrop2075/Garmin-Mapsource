@@ -15,9 +15,9 @@
  * TODO
  * waypoint
  *    gpx      done
- * routes
+ * routes      baffling
  *    gpx
- * tracks
+ * tracks      straight forward
  *    gpx
 ==============================================================================*/
 // INCLUDE
@@ -478,13 +478,21 @@ void read_t(void)                            // read track section
 int main(int argc, char *argv[])
 {
    tst=false;                                // test flag
-   // if(tst) system("clear");                  // clear screen
-   if(tst) printf ("MPS -> GPX conversion\n"); // message
-   if (argc==1)
+   if(tst) system("clear");                  // clear screen
+   if(tst) printf ("MPS -> GPX conversion testing\n"); // message
+
+   if (argc>1 && strcmp(argv[1],"-v")==0)    // version display
+   {
+      printf("%s\n","version: 2026-04-19");
+      exit(1);
+   }
+
+   if (argc==1)                              // no command line
    {
       printf("%s\n","mps-gpx FILE_NAME");
       exit(1);
    }
+
    if(tst) printf("%s   %s   %s\n","argc","prgm","file"); // command line
    if(tst) printf("%d   %s   %s\n",argc,argv[0],argv[1]);
 

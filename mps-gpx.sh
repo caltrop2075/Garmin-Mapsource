@@ -40,7 +40,7 @@ do
    src="$dir/$fil"
    des="$dir/gpx/${fil%.*}.gpx"
    # printf "%-60s %s\n" "~${src#$HOME}" "~${des#$HOME}"
-   mps-gpx "$src" > "$des"
+   mps-gpx "$src" | mps-gpx.sed > "$des"
 done < <(find ~ -type f -mmin -$m -iname "*.mps" -printf "%h|%f\n" | sort)
 echo $div_s
 #-------------------------------------------------------------------------------

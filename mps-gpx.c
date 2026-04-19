@@ -30,7 +30,7 @@
 // VARIABLE DECLARATION
 union buff
 {                                            // byte  desc
-   unsigned char        chr[64];             // 64    buffer size
+   unsigned char        chr[128];            // 64    buffer size
    short int            ssi;                 //  2    misc
    unsigned short int   usi;                 //  2    misc
    int                  si;                  //  4    lat/lon

@@ -38,6 +38,14 @@ it produces a GPX file
             </TR>
             <TR>
                <TD>
+               <P ALIGN=CENTER>mps-gpx.sed
+               </TD>
+               <TD>
+                  <P ALIGN=CENTER>linux bash script for special characters
+               </TD>
+            </TR>
+            <TR>
+               <TD>
                   <P ALIGN=CENTER>makefile
                </TD>
                <TD>

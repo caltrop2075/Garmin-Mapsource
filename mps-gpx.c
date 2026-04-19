@@ -1,6 +1,6 @@
 /*==============================================================================
  * MPS -> GPX
- * 2026-04-17
+ * 2026-04-19
  * read byte by byte & decode
  * buffer is 64 bytes
  *    always \0 terminated but prints 'buf' bytes

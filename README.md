@@ -8,7 +8,9 @@ there's nearly 500 lines of 'C'<br>
 a chunk of it is data
 
 execute: mps-gpx filename | tee destination<br>
-it produces a GPX file
+it produces a GPX file<br>
+
+latest update has multiple smaller C files
 
 <TABLE>
    <TR>
@@ -30,7 +32,7 @@ it produces a GPX file
             </TR>
             <TR>
                <TD>
-               <P ALIGN=CENTER>mps-gpx.sh
+                  <P ALIGN=CENTER>mps-gpx.sh
                </TD>
                <TD>
                   <P ALIGN=CENTER>linux bash script
@@ -38,7 +40,7 @@ it produces a GPX file
             </TR>
             <TR>
                <TD>
-               <P ALIGN=CENTER>mps-gpx.sed
+                  <P ALIGN=CENTER>mps-gpx.sed
                </TD>
                <TD>
                   <P ALIGN=CENTER>linux bash script for special characters
@@ -54,10 +56,42 @@ it produces a GPX file
             </TR>
             <TR>
                <TD>
+                  <P ALIGN=CENTER>mps-gpx.h
+               </TD>
+               <TD>
+                  <P ALIGN=CENTER>C code: header
+               </TD>
+            </TR>
+            <TR>
+               <TD>
                   <P ALIGN=CENTER>mps-gpx.c
                </TD>
                <TD>
-                  <P ALIGN=CENTER>C code
+                  <P ALIGN=CENTER>C code: main
+               </TD>
+            </TR>
+            <TR>
+               <TD>
+                  <P ALIGN=CENTER>mps-gpx-data.c
+               </TD>
+               <TD>
+                  <P ALIGN=CENTER>C code: symbol data
+               </TD>
+            </TR>
+            <TR>
+               <TD>
+                  <P ALIGN=CENTER>mps-gpx-read.c
+               </TD>
+               <TD>
+                  <P ALIGN=CENTER>C code: read functions
+               </TD>
+            </TR>
+            <TR>
+               <TD>
+                  <P ALIGN=CENTER>mps-gpx-util.c
+               </TD>
+               <TD>
+                  <P ALIGN=CENTER>C code: utility functions
                </TD>
             </TR>
             <TR>

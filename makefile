@@ -1,10 +1,14 @@
-#===============================================================================
+#-------------------------------------------------------------------------------
 #    FILE: makefile    -> make
 #          mps-gpx.mak -> make -f mps-gpx.mak
 # PURPOSE: mps waypoint extraction
-#
-# the simplest make file; need to work on creating, very baffling...
 #-------------------------------------------------------------------------------
-mps-gpx: mps-gpx.c
-	gcc -Wall -o mps-gpx mps-gpx.c
-#===============================================================================
+obj_c = $(wildcard *.c)
+obj_o = $(wildcard *.o)
+
+mps-gpx: $(obj_o)
+	cc -o mps-gpx $(obj_o)
+
+all: $(obj_c)
+	cc -c $(obj_c)
+#-------------------------------------------------------------------------------

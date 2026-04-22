@@ -1,6 +1,8 @@
 # Garmin-Mapsource
 MPS waypoint extractor in 'C'
 
+currently working on track point extraction
+
 not much to say...<br>
 on my Linux system mps-gpx is only 25.3k
 

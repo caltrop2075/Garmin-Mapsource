@@ -7,7 +7,7 @@
 #-------------------------------------------------------------------------------
 # file definitions
 src := $(wildcard mps-gpx*.c)
-obj := $(patsubst %.c,%.o,$(wildcard mps-gpx*.c))
+obj := $(patsubst %.c,%.o,$(src))
 
 mps-gpx: $(obj)
 	cc -o $@ $(obj)

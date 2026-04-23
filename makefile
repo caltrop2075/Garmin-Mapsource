@@ -9,9 +9,11 @@
 src := $(wildcard mps-gpx*.c)
 obj := $(patsubst %.c,%.o,$(src))
 
+# executable
 mps-gpx: $(obj)
 	cc -o $@ $(obj)
 
+# object files from source
 %.o: %.c  mps-gpx.h
 	cc -c $<
 #-------------------------------------------------------------------------------

@@ -1,22 +1,23 @@
 #-------------------------------------------------------------------------------
-#    FILE: makefile    -> make
-#          mps-gpx.mak -> make -f mps-gpx.mak
-# PURPOSE: mps waypoint extraction
+# compile 'mps-gpx' project
 # not doing cleanup of '*.o', leaving for future compiles
-# MAKE is totally baffling...
+# finally figured 'MAKE'
+# entire project compiled using project executable name
 #-------------------------------------------------------------------------------
-# project definition
-bse = mps-gpx
+# project executable name
+prj = mps-gpx
 
-# file definitions
-src = $(wildcard $(bse)*.c)
-obj = $(patsubst %.c,%.o,$(src))
+# object list
+obj = $(patsubst %.c,%.o,$(wildcard $(prj)*.c))
 
 # executable
-mps-gpx: $(obj)
+#    $@                 left name; could use $(prj)
+$(prj): $(obj)
 	cc -o $@ $(obj)
 
-# object files from source
-%.o: %.c  $(bse).h
+# object
+# %.o: %.c $(prj).h     '%' name w/o extension from previous rule
+#    $<                 1st in right list
+%.o: %.c  $(prj).h
 	cc -c $<
 #-------------------------------------------------------------------------------

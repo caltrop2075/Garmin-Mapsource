@@ -16,7 +16,6 @@ $(prj): $(obj)
 	cc -o $@ $(obj)
 
 # object
-# %.o: %.c $(prj).h     '%' name w/o extension from previous rule
 #    $<                 1st in right list
 %.o: %.c  $(prj).h
 	cc -c $<
